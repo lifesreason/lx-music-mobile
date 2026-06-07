@@ -58,7 +58,7 @@ jobs:
         shell: bash
         run: |
           cd android
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug -PMYAPP_UPLOAD_STORE_FILE=debug.keystore -PMYAPP_UPLOAD_KEY_ALIAS=androiddebugkey -PMYAPP_UPLOAD_STORE_PASSWORD=android -PMYAPP_UPLOAD_KEY_PASSWORD=android
 
       # Push tag to GitHub if package.json version's tag is not tagged
       - name: Get package version
