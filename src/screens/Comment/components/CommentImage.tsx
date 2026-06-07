@@ -48,9 +48,9 @@ export default ({ url, maxWidth }: { url: string, maxWidth: number }) => {
         {
           show ? (<Image
             url={url}
-            style={{ height: wh.height, width: wh.width, borderWidth: BorderWidths.normal, borderColor: theme['c-border-background'] }}
+            style={{ height: wh.height, width: wh.width, borderWidth: BorderWidths.normal, borderColor: theme['c-border-background'], borderRadius: 8 }}
           />) : (
-            <TouchableOpacity style={{ ...styles.defaultPic, borderColor: theme['c-border-background'], backgroundColor: theme['c-primary-light-200-alpha-900'] }} onPress={() => { setShow(true) }}>
+            <TouchableOpacity style={{ ...styles.defaultPic, borderColor: theme['c-border-background'], backgroundColor: theme['c-primary-background'] }} onPress={() => { setShow(true) }}>
               <Text size={13} color={theme['c-primary-font-hover']}>{global.i18n.t('comment_show_image')}</Text>
             </TouchableOpacity>
           )
@@ -67,6 +67,7 @@ const styles = createStyle({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: BorderWidths.normal,
+    borderRadius: 8,
     borderStyle: 'dashed',
   },
 })

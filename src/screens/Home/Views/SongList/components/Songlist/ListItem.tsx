@@ -27,12 +27,13 @@ export default memo(({ item, index, width, showSource, onPress }: {
           <View style={{ ...styles.listItem, width: itemWidth }}>
             <View style={{ ...styles.listItemImg, backgroundColor: theme['c-content-background'] }}>
               <TouchableOpacity activeOpacity={0.5} onPress={handlePress}>
-                <Image url={item.img} nativeID={`${NAV_SHEAR_NATIVE_IDS.songlistDetail_pic}_from_${item.id}`} style={{ width: itemWidth, height: itemWidth, borderRadius: 4 }} />
+                <Image url={item.img} nativeID={`${NAV_SHEAR_NATIVE_IDS.songlistDetail_pic}_from_${item.id}`} style={{ width: itemWidth, height: itemWidth, borderRadius: 8 }} />
                 { showSource ? <Text style={styles.sourceLabel} size={9} color="#fff" >{item.source}</Text> : null }
+                { item.play_count ? <Text style={styles.playCountLabel} size={9} color="#fff">{item.play_count}</Text> : null }
               </TouchableOpacity>
             </View>
             <TouchableOpacity activeOpacity={0.5} onPress={handlePress}>
-              <Text style={styles.listItemTitle} numberOfLines={ 2 }>{item.name}</Text>
+              <Text style={styles.listItemTitle} size={13} numberOfLines={ 2 }>{item.name}</Text>
             </TouchableOpacity>
             {/* <Text>{JSON.stringify(item)}</Text> */}
           </View>
@@ -44,12 +45,12 @@ export default memo(({ item, index, width, showSource, onPress }: {
 const styles = createStyle({
   listItem: {
     // width: 90,
-    margin: 10,
+    margin: 9,
   },
   listItemImg: {
     // backgroundColor: '#eee',
-    borderRadius: 4,
-    marginBottom: 5,
+    borderRadius: 8,
+    marginBottom: 7,
     overflow: 'hidden',
     ...Platform.select({
       ios: {
@@ -67,17 +68,28 @@ const styles = createStyle({
     }),
   },
   sourceLabel: {
-    paddingLeft: 4,
-    paddingBottom: 2,
-    paddingRight: 4,
+    paddingLeft: 6,
+    paddingBottom: 3,
+    paddingTop: 2,
+    paddingRight: 6,
     position: 'absolute',
-    top: 0,
-    right: 0,
-    borderBottomLeftRadius: 3,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    top: 6,
+    left: 6,
+    borderRadius: 8,
+    backgroundColor: 'rgba(0, 0, 0, 0.42)',
+  },
+  playCountLabel: {
+    paddingLeft: 6,
+    paddingBottom: 3,
+    paddingTop: 2,
+    paddingRight: 6,
+    position: 'absolute',
+    right: 6,
+    bottom: 6,
+    borderRadius: 8,
+    backgroundColor: 'rgba(0, 0, 0, 0.42)',
   },
   listItemTitle: {
-    fontSize: 12,
     // overflow: 'hidden',
     marginBottom: 5,
   },

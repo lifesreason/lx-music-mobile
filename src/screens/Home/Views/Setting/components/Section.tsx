@@ -15,8 +15,8 @@ export default ({ title, children }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ ...styles.title, borderLeftColor: theme['c-primary'] }} size={16} >{title}</Text>
-      <View>
+      <Text style={{ ...styles.title, color: theme['c-font-label'] }} size={13} >{title}</Text>
+      <View style={{ ...styles.body, backgroundColor: theme['c-content-background'] }}>
         {children}
       </View>
     </View>
@@ -26,13 +26,19 @@ export default ({ title, children }: Props) => {
 
 const styles = createStyle({
   container: {
-    // paddingLeft: 10,
+    paddingHorizontal: 12,
+    marginBottom: 14,
     // backgroundColor: 'rgba(0,0,0,0.2)',
   },
   title: {
-    borderLeftWidth: 5,
-    paddingLeft: 12,
-    marginBottom: 10,
+    paddingLeft: 6,
+    marginBottom: 8,
     // lineHeight: 16,
+  },
+  body: {
+    borderRadius: 10,
+    paddingTop: 12,
+    paddingBottom: 2,
+    overflow: 'hidden',
   },
 })

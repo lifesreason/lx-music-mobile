@@ -40,7 +40,7 @@ export default ({ isHome }: { isHome: boolean }) => {
   // console.log(playMusicInfo)
   return (
     <TouchableOpacity style={styles.container} onLongPress={handleLongPress} onPress={handlePress} activeOpacity={0.7} >
-      <Text color={theme['c-font-label']} numberOfLines={1}>{title}</Text>
+      <Text color={theme['c-font']} size={13} numberOfLines={1}>{title}</Text>
     </TouchableOpacity>
   )
 }
@@ -69,6 +69,7 @@ const styles = createStyle({
   container: {
     width: '100%',
     paddingHorizontal: 2,
+    paddingTop: 1,
     // paddingBottom: 4,
     // height: '50%',
     // backgroundColor: 'rgba(0, 0, 0, .1)',

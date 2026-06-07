@@ -59,12 +59,14 @@ export default forwardRef<ActiveListType, ActiveListProps>(({ onShowSearchBar, o
   }, [])
 
   return (
-    <TouchableOpacity onPress={showList} onLongPress={onScrollToTop} style={{ ...styles.currentList, opacity: visibleBar ? 1 : 0, borderBottomColor: theme['c-border-background'] }}>
-      <Icon style={styles.currentListIcon} color={theme['c-button-font']} name="chevron-right" size={12} />
-      { fetching ? <Loading color={theme['c-button-font']} style={styles.loading} /> : null }
-      <Text style={styles.currentListText} numberOfLines={1} color={theme['c-button-font']}>{currentListName}</Text>
-      <TouchableOpacity style={styles.currentListBtns} onPress={onShowSearchBar}>
-        <Icon color={theme['c-button-font']} name="search-2" />
+    <TouchableOpacity onPress={showList} onLongPress={onScrollToTop} style={{ ...styles.currentList, opacity: visibleBar ? 1 : 0, borderBottomColor: theme['c-border-background'], backgroundColor: theme['c-content-background'] }}>
+      <View style={{ ...styles.currentListIcon, backgroundColor: theme['c-primary-background'] }}>
+        <Icon color={theme['c-primary']} name="chevron-right" size={12} />
+      </View>
+      { fetching ? <Loading color={theme['c-primary']} style={styles.loading} /> : null }
+      <Text style={styles.currentListText} numberOfLines={1} color={theme['c-font']}>{currentListName}</Text>
+      <TouchableOpacity style={{ ...styles.currentListBtns, backgroundColor: theme['c-primary-background'] }} onPress={onShowSearchBar}>
+        <Icon color={theme['c-primary']} name="search-2" />
       </TouchableOpacity>
     </TouchableOpacity>
   )
@@ -74,15 +76,19 @@ export default forwardRef<ActiveListType, ActiveListProps>(({ onShowSearchBar, o
 const styles = createStyle({
   currentList: {
     flexDirection: 'row',
-    paddingRight: 2,
-    height: 36,
+    paddingRight: 10,
+    paddingLeft: 12,
+    height: 46,
     alignItems: 'center',
     borderBottomWidth: BorderWidths.normal,
     // backgroundColor: 'rgba(0,0,0,0.2)',
   },
   currentListIcon: {
-    paddingLeft: 15,
-    paddingRight: 10,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
     // paddingTop: 10,
     // paddingBottom: 0,
   },
@@ -98,10 +104,11 @@ const styles = createStyle({
     marginRight: 5,
   },
   currentListBtns: {
-    width: 46,
+    width: 34,
+    borderRadius: 17,
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
+    height: 34,
     // backgroundColor: 'rgba(0,0,0,0.2)',
   },
 })

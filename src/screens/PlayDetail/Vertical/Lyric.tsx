@@ -76,9 +76,9 @@ const LrcLine = memo(({ line, lineNum, activeLine, onLayout }: LineProps) => {
       theme['c-primary-alpha-200'],
       1,
     ] as const : [
-      theme['c-350'],
-      theme['c-300'],
-      0.6,
+      theme['c-600'],
+      theme['c-500'],
+      0.72,
     ] as const
   }, [activeLine, lineNum, theme])
 
@@ -95,6 +95,7 @@ const LrcLine = memo(({ line, lineNum, activeLine, onLayout }: LineProps) => {
         ...styles.lineText,
         textAlign,
         lineHeight,
+        fontWeight: activeLine == lineNum ? '600' : '400',
       }} textBreakStrategy="simple" color={colors[0]} opacity={colors[2]} size={size}>{line.text}</AnimatedColorText>
       {
         line.extendedLyrics.map((lrc, index) => {
@@ -334,16 +335,16 @@ export default () => {
 const styles = createStyle({
   container: {
     flex: 1,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 28,
+    paddingRight: 28,
     // backgroundColor: 'rgba(0,0,0,0.1)',
   },
   space: {
-    paddingTop: '100%',
+    paddingTop: '72%',
   },
   line: {
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 12,
+    paddingBottom: 12,
     // opacity: 0,
   },
   lineText: {

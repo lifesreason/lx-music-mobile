@@ -29,8 +29,8 @@ const HeaderItem = ({ id, label, isActive, onPress }: {
   const theme = useTheme()
   // console.log(theme)
   const components = useMemo(() => (
-    <TouchableOpacity style={styles.tabBtn} onPress={() => { !isActive && onPress(id) }}>
-      <Text color={isActive ? theme['c-primary-font-active'] : theme['c-font']}>{label}</Text>
+    <TouchableOpacity style={{ ...styles.tabBtn, backgroundColor: isActive ? theme['c-primary-background'] : 'rgba(0,0,0,0)' }} onPress={() => { !isActive && onPress(id) }}>
+      <Text color={isActive ? theme['c-primary'] : theme['c-font-label']} size={14}>{label}</Text>
     </TouchableOpacity>
   ), [isActive, theme, label, onPress, id])
 
@@ -130,13 +130,13 @@ export default memo(({ componentId }: {
   const commentComponent = useMemo(() => {
     return (
       <View style={styles.container}>
-        <View style={{ ...styles.tabHeader, borderBottomColor: theme['c-border-background'], height: BAR_HEIGHT }}>
+        <View style={{ ...styles.tabHeader, borderBottomColor: theme['c-border-background'], backgroundColor: theme['c-content-background'], height: BAR_HEIGHT + 12 }}>
           <View style={styles.left}>
             {tabs.map(({ id, label }) => <HeaderItem id={id} label={label} key={id} isActive={activeId == id} onPress={toggleTab} />)}
           </View>
           <View>
-            <TouchableOpacity onPress={refreshComment} style={{ ...styles.btn, width: BAR_HEIGHT }}>
-              <Icon name="available_updates" size={20} color={theme['c-600']} />
+            <TouchableOpacity onPress={refreshComment} style={{ ...styles.btn, width: BAR_HEIGHT, backgroundColor: theme['c-primary-background'] }}>
+              <Icon name="available_updates" size={18} color={theme['c-primary']} />
             </TouchableOpacity>
           </View>
         </View>
@@ -187,28 +187,33 @@ const styles = createStyle({
   tabHeader: {
     flexDirection: 'row',
     // paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 12,
+    paddingTop: 6,
+    paddingBottom: 6,
     // justifyContent: 'center',
     borderBottomWidth: BorderWidths.normal,
+    alignItems: 'center',
   },
   left: {
     flex: 1,
     flexDirection: 'row',
-    paddingLeft: 5,
+    paddingLeft: 12,
   },
   tabBtn: {
     // flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 14,
+    paddingRight: 14,
+    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100%',
+    height: 32,
   },
   btn: {
     // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100%',
+    height: 32,
+    borderRadius: 16,
   },
   pagerView: {
     flex: 1,

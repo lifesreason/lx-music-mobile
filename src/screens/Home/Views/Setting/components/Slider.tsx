@@ -18,9 +18,9 @@ export default memo(({ value, minimumValue, maximumValue, onSlidingStart, onSlid
       style={styles.slider}
       minimumValue={minimumValue}
       maximumValue={maximumValue}
-      minimumTrackTintColor={theme['c-button-background-active']}
-      maximumTrackTintColor={theme['c-button-background']}
-      thumbTintColor={theme['c-primary-light-100']}
+      minimumTrackTintColor={theme['c-primary']}
+      maximumTrackTintColor={theme['c-primary-background-hover']}
+      thumbTintColor={theme['c-primary']}
       onSlidingStart={onSlidingStart}
       onSlidingComplete={onSlidingComplete}
       onValueChange={onValueChange}
@@ -38,5 +38,6 @@ const styles = createStyle({
     maxWidth: 300,
     height: 40,
     marginTop: -6,
+    marginBottom: 8,
   },
 })

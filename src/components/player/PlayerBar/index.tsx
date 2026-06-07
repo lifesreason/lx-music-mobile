@@ -19,7 +19,7 @@ export default memo(({ isHome = false }: { isHome?: boolean }) => {
   const autoHidePlayBar = useSettingValue('common.autoHidePlayBar')
 
   const playerComponent = useMemo(() => (
-    <View style={{ ...styles.container, backgroundColor: theme['c-content-background'] }}>
+    <View style={{ ...styles.container, backgroundColor: theme['c-content-background'], borderColor: theme['c-border-background'] }}>
       <Pic isHome={isHome} />
       <View style={styles.center}>
         <Title isHome={isHome} />
@@ -42,21 +42,15 @@ export default memo(({ isHome = false }: { isHome?: boolean }) => {
 
 const styles = createStyle({
   container: {
-    width: '100%',
-    // height: 100,
-    // paddingTop: progressContentPadding,
-    // marginTop: -progressContentPadding,
-    // backgroundColor: 'rgba(0, 0, 0, .1)',
-    // borderTopWidth: BorderWidths.normal2,
-    paddingVertical: 5,
-    paddingLeft: 5,
-    // backgroundColor: AppColors.primary,
-    // backgroundColor: 'red',
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
+    marginHorizontal: 8,
+    marginBottom: 8,
+    paddingVertical: 6,
+    paddingLeft: 6,
+    borderRadius: 28,
+    borderWidth: 0.5,
     flexDirection: 'row',
     alignItems: 'center',
-    elevation: 10,
+    elevation: 8,
   },
   left: {
     // borderRadius: 3,
@@ -67,7 +61,7 @@ const styles = createStyle({
     flexDirection: 'column',
     flexGrow: 1,
     flexShrink: 1,
-    paddingLeft: 5,
+    paddingLeft: 10,
     height: '100%',
     // justifyContent: 'space-evenly',
     // height: 48,
@@ -78,8 +72,8 @@ const styles = createStyle({
     alignItems: 'center',
     flexGrow: 0,
     flexShrink: 0,
-    paddingLeft: 5,
-    paddingRight: 5,
+    paddingLeft: 2,
+    paddingRight: 2,
   },
   // row: {
   //   flexDirection: 'row',

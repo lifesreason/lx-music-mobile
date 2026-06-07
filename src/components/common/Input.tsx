@@ -8,26 +8,21 @@ import { setSpText } from '@/utils/pixelRatio'
 const styles = createStyle({
   content: {
     flexDirection: 'row',
-    // backgroundColor: 'rgba(0,0,0,0.1)',
     flexGrow: 1,
     flexShrink: 1,
-    // height: 38,
     alignItems: 'center',
-    // paddingRight: 5,
+    borderRadius: 18,
+    overflow: 'hidden',
   },
   input: {
-    // backgroundColor: 'rgba(0,0,0,0.1)',
-    // backgroundColor: 'white',
-    borderRadius: 2,
+    borderRadius: 18,
     paddingTop: 0,
     paddingBottom: 0,
-    height: 32,
-    paddingLeft: 5,
+    height: 36,
+    paddingLeft: 12,
     paddingRight: 0,
     flexGrow: 1,
     flexShrink: 1,
-    // height: '100%',
-    // width: '100%',
     fontSize: 14,
   },
   clearBtnContent: {
@@ -35,11 +30,10 @@ const styles = createStyle({
     flexShrink: 0,
   },
   clearBtn: {
-    height: '70%',
-    paddingLeft: 5,
-    paddingRight: 5,
+    height: 36,
+    paddingLeft: 8,
+    paddingRight: 12,
     justifyContent: 'center',
-    // backgroundColor: 'rgba(0,0,0,0.2)',
   },
 })
 
@@ -110,21 +104,26 @@ export default forwardRef<InputType, InputProps>(({ onChangeText, onClearText, c
   }, [onChangeText])
 
   return (
-    <View style={styles.content}>
+    <View style={{ ...styles.content, backgroundColor: theme['c-primary-input-background'] }}>
       <TextInput
         autoCapitalize="none"
         onChangeText={changeText}
         autoComplete="off"
-        style={StyleSheet.compose({ ...styles.input, color: theme['c-font'], fontSize: setSpText(size) }, style)}
-        placeholderTextColor={theme['c-primary-dark-100-alpha-600']}
-        selectionColor={theme['c-primary-light-100-alpha-300']}
+        style={StyleSheet.compose({
+          ...styles.input,
+          backgroundColor: theme['c-primary-input-background'],
+          color: theme['c-font'],
+          fontSize: setSpText(size),
+        }, style)}
+        placeholderTextColor={theme['c-500']}
+        selectionColor={theme['c-primary']}
         ref={inputRef} {...props} />
       {/* <View style={styles.clearBtnContent}>
       <Animated.View style={{ ...styles.clearBtnContent, transform: [{ scale: scaleClearBtn }] }}> */}
         {clearBtn
           ? <View style={styles.clearBtnContent}>
               <TouchableOpacity style={styles.clearBtn} onPress={clearText}>
-                <Icon name="remove" color={theme['c-primary-dark-100-alpha-500']} size={11} />
+                <Icon name="remove" color={theme['c-500']} size={11} />
               </TouchableOpacity>
             </View>
           : null
@@ -134,4 +133,3 @@ export default forwardRef<InputType, InputProps>(({ onChangeText, onClearText, c
     </View>
   )
 })
-

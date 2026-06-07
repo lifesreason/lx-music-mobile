@@ -68,30 +68,33 @@ export const buildActiveThemeColors = (theme: LX.Theme): LX.ActiveTheme => {
     theme.config.extInfo[k] = theme.config.themeColors[v.replace(varColorRxp, '$1') as ColorsKey]
   }
 
+  const isDark = theme.isDark
+  const themeColors = theme.config.themeColors
+
   return {
     id: theme.id,
     name: theme.name,
-    isDark: theme.isDark,
-    ...theme.config.themeColors,
+    isDark,
+    ...themeColors,
     ...theme.config.extInfo,
-    'c-font': theme.config.themeColors['c-850'],
-    'c-font-label': theme.config.themeColors['c-450'],
-    'c-primary-font': theme.config.themeColors['c-primary'],
-    'c-primary-font-hover': theme.config.themeColors['c-primary-alpha-300'],
-    'c-primary-font-active': theme.config.themeColors['c-primary-dark-100-alpha-200'],
-    'c-primary-background': theme.config.themeColors['c-primary-light-400-alpha-700'],
-    'c-primary-background-hover': theme.config.themeColors['c-primary-light-300-alpha-800'],
-    'c-primary-background-active': theme.config.themeColors['c-primary-light-100-alpha-800'],
-    'c-primary-input-background': theme.config.themeColors['c-primary-light-400-alpha-700'],
-    'c-button-font': theme.config.themeColors['c-primary-alpha-100'],
-    'c-button-font-selected': theme.config.themeColors['c-primary-dark-100-alpha-100'],
-    'c-button-background': theme.config.themeColors['c-primary-light-400-alpha-700'],
-    'c-button-background-selected': theme.config.themeColors['c-primary-alpha-600'],
-    'c-button-background-hover': theme.config.themeColors['c-primary-light-300-alpha-600'],
-    'c-button-background-active': theme.config.themeColors['c-primary-light-100-alpha-600'],
-    'c-list-header-border-bottom': theme.config.themeColors['c-primary-alpha-900'],
-    'c-content-background': theme.config.themeColors['c-primary-light-1000'],
-    'c-border-background': theme.config.themeColors['c-primary-light-100-alpha-700'],
+    'c-font': themeColors['c-850'],
+    'c-font-label': themeColors['c-450'],
+    'c-primary-font': themeColors['c-primary'],
+    'c-primary-font-hover': themeColors['c-primary-alpha-300'],
+    'c-primary-font-active': themeColors['c-primary'],
+    'c-primary-background': isDark ? themeColors['c-150'] : themeColors['c-050'],
+    'c-primary-background-hover': isDark ? themeColors['c-200'] : themeColors['c-100'],
+    'c-primary-background-active': themeColors['c-primary-alpha-800'],
+    'c-primary-input-background': isDark ? themeColors['c-150'] : themeColors['c-050'],
+    'c-button-font': themeColors['c-primary'],
+    'c-button-font-selected': themeColors['c-primary-dark-100'],
+    'c-button-background': isDark ? themeColors['c-150'] : themeColors['c-050'],
+    'c-button-background-selected': themeColors['c-primary-alpha-800'],
+    'c-button-background-hover': isDark ? themeColors['c-200'] : themeColors['c-100'],
+    'c-button-background-active': themeColors['c-primary-alpha-700'],
+    'c-list-header-border-bottom': isDark ? themeColors['c-150'] : themeColors['c-100'],
+    'c-content-background': isDark ? themeColors['c-100'] : themeColors['c-primary-light-1000'],
+    'c-border-background': isDark ? themeColors['c-150'] : themeColors['c-100'],
     'bg-image': bgImg,
   } as const
 }

@@ -48,8 +48,8 @@ export default memo(({ item, index, activeIndex, onPress, onShowMenu, onLongPres
       <TouchableOpacity style={styles.listItemLeft} onPress={() => { onPress(item, index) }} onLongPress={() => { onLongPress(item, index) }}>
         {
           active
-            ? <Icon style={styles.sn} name="play-outline" size={13} color={theme['c-primary-font']} />
-            : <Text style={styles.sn} size={13} color={theme['c-300']}>{index + 1}</Text>
+            ? <View style={styles.snIcon}><Icon name="play-outline" size={13} color={theme['c-primary-font']} /></View>
+            : <Text style={styles.sn} size={13} color={theme['c-350']}>{index + 1}</Text>
         }
         <View style={styles.itemInfo}>
           {/* <View style={styles.listItemTitle}> */}
@@ -69,8 +69,8 @@ export default memo(({ item, index, activeIndex, onPress, onShowMenu, onLongPres
         }
       </TouchableOpacity>
       {/* <View style={styles.listItemRight}> */}
-      <TouchableOpacity onPress={handleShowMenu} ref={moreButtonRef} style={styles.moreButton}>
-        <Icon name="dots-vertical" style={{ color: theme['c-350'] }} size={12} />
+      <TouchableOpacity onPress={handleShowMenu} ref={moreButtonRef} style={{ ...styles.moreButton, backgroundColor: theme['c-primary-background'] }}>
+        <Icon name="dots-vertical" style={{ color: theme['c-500'] }} size={12} />
       </TouchableOpacity>
       {/* </View> */}
     </View>
@@ -92,9 +92,9 @@ const styles = createStyle({
     // width: '50%',
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    // paddingLeft: 10,
-    paddingRight: 2,
+    paddingRight: 10,
     alignItems: 'center',
+    borderRadius: 8,
     // borderBottomWidth: BorderWidths.normal,
   },
   listItemLeft: {
@@ -105,10 +105,16 @@ const styles = createStyle({
     alignItems: 'center',
   },
   sn: {
-    width: 38,
+    width: 44,
     // fontSize: 12,
     textAlign: 'center',
     // backgroundColor: 'rgba(0,0,0,0.2)',
+    paddingLeft: 3,
+    paddingRight: 3,
+  },
+  snIcon: {
+    width: 44,
+    alignItems: 'center',
     paddingLeft: 3,
     paddingRight: 3,
   },
@@ -149,12 +155,14 @@ const styles = createStyle({
   },
 
   moreButton: {
-    height: '80%',
-    paddingLeft: 16,
-    paddingRight: 16,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    marginLeft: 6,
     // paddingTop: 10,
     // paddingBottom: 10,
     // backgroundColor: 'rgba(0,0,0,0.2)',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 })

@@ -6,6 +6,24 @@ const { createThemeColors } = require('./utils')
 
 const defaultThemes = [
   {
+    id: 'netease',
+    name: '网易云红',
+    isDark: false,
+    config: {
+      primary: 'rgb(236, 65, 65)',
+      font: 'rgb(31, 31, 31)',
+      'c-app-background': 'rgba(247, 247, 247, 1)',
+      'c-main-background': 'rgba(247, 247, 247, 1)',
+      'bg-image': '',
+      'bg-image-position': 'center',
+      'bg-image-size': 'cover',
+
+      'c-badge-primary': 'var(c-primary)',
+      'c-badge-secondary': '#2f8de4',
+      'c-badge-tertiary': '#d9961b',
+    },
+  },
+  {
     id: 'green',
     name: '绿意盎然',
     isDark: false,
@@ -309,4 +327,3 @@ const themes = defaultThemes.map(({ config: { primary, font, ...extInfo }, ...th
 })
 
 fs.writeFileSync(path.join(__dirname, 'themes.ts'), `/* eslint-disable */\n//! 此文件由 createThemes.js 生成\n\nexport default ${JSON.stringify(themes, null, 2)} as const`)
-

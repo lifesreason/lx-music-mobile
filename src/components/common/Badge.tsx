@@ -7,9 +7,9 @@ import Text from './Text'
 
 const styles = createStyle({
   text: {
-    // paddingLeft: 4,
-    // paddingRight: 4,
-    // borderRadius: 2,
+    paddingLeft: 4,
+    paddingRight: 4,
+    borderRadius: 2,
     // lineHeight: 12,
     // marginTop: 2,
     marginRight: 5,
@@ -30,24 +30,23 @@ export default memo(({ type = 'normal', children }: {
   const theme = useTheme()
   // console.log(visible)
   const colors = useMemo(() => {
-    const colors = { textColor: '' }
+    const colors = { textColor: '', bgColor: '' }
     switch (type) {
       case 'normal':
-        // colors.bgColor = theme.primary
         colors.textColor = theme['c-badge-primary']
+        colors.bgColor = theme['c-primary-alpha-900']
         break
       case 'secondary':
-        // colors.bgColor = theme.primary
         colors.textColor = theme['c-badge-secondary']
+        colors.bgColor = theme.isDark ? theme['c-150'] : '#eef6ff'
         break
       case 'tertiary':
-        // colors.bgColor = theme.primary
         colors.textColor = theme['c-badge-tertiary']
+        colors.bgColor = theme.isDark ? theme['c-150'] : '#fff6e5'
         break
     }
     return colors
   }, [type, theme])
 
-  return <Text style={styles.text} size={9} color={colors.textColor}>{children}</Text>
+  return <Text style={{ ...styles.text, backgroundColor: colors.bgColor }} size={9} color={colors.textColor}>{children}</Text>
 })
-

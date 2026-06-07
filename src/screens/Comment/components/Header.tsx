@@ -12,6 +12,8 @@ import { HEADER_HEIGHT as _HEADER_HEIGHT } from '@/config/constant'
 import { scaleSizeH } from '@/utils/pixelRatio'
 import commonState from '@/store/common/state'
 import { useStatusbarHeight } from '@/store/common/hook'
+import { useTheme } from '@/store/theme/hook'
+import { BorderWidths } from '@/theme'
 
 const HEADER_HEIGHT = scaleSizeH(_HEADER_HEIGHT)
 
@@ -20,17 +22,18 @@ export default memo(({ musicInfo }: {
 }) => {
   const t = useI18n()
   const statusBarHeight = useStatusbarHeight()
+  const theme = useTheme()
 
   const back = () => {
     void pop(commonState.componentIds.comment!)
   }
 
   return (
-    <View style={{ height: HEADER_HEIGHT + statusBarHeight, paddingTop: statusBarHeight }}>
+    <View style={{ height: HEADER_HEIGHT + statusBarHeight, paddingTop: statusBarHeight, backgroundColor: theme['c-content-background'], borderBottomColor: theme['c-border-background'], borderBottomWidth: BorderWidths.normal }}>
       <StatusBar />
       <View style={{ ...styles.container }}>
         <TouchableOpacity onPress={back} style={{ ...styles.button, width: HEADER_HEIGHT }}>
-          <Icon name="chevron-left" size={18} />
+          <Icon name="chevron-left" size={18} color={theme['c-font']} />
         </TouchableOpacity>
         <Text numberOfLines={1} size={16} style={styles.title}>{t('comment_title', { name: musicInfo.name, singer: musicInfo.singer })}</Text>
         {/* <TouchableOpacity onPress={back} style={{ ...styles.button }}>
@@ -60,6 +63,7 @@ const styles = createStyle({
   title: {
     flex: 1,
     textAlign: 'center',
+    fontWeight: '600',
   },
   icon: {
     paddingLeft: 4,

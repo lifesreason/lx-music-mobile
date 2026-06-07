@@ -42,7 +42,6 @@ export default ({ musicInfo, onUpdateTotal }: {
     }
   }
   const handleListLoadMore = () => {
-    console.log('load')
     if (listInfo.current.isLoading || listInfo.current.isEnd) return
     const list = listRef.current?.getList() ?? []
     const page = list.length ? listInfo.current.page + 1 : 1

@@ -23,14 +23,14 @@ const styles = createStyle({
   header: {
     flex: 0,
     flexDirection: 'row',
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
   },
   title: {
-    paddingLeft: 10,
-    paddingRight: 25,
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingLeft: 18,
+    paddingRight: 40,
+    paddingTop: 15,
+    paddingBottom: 12,
     // lineHeight: 20,
   },
   closeBtn: {
@@ -39,8 +39,8 @@ const styles = createStyle({
     // borderTopRightRadius: 8,
     flexGrow: 0,
     flexShrink: 0,
-    height: 30,
-    width: 30,
+    height: 46,
+    width: 46,
     justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: '#eee',
@@ -161,19 +161,20 @@ export default forwardRef<PopupType, PopupProps>(({
             maxHeight: '78%',
             minHeight: '20%',
             // backgroundColor: 'white',
-            borderTopLeftRadius: 8,
-            borderTopRightRadius: 8,
+            borderTopLeftRadius: 16,
+            borderTopRightRadius: 16,
+            overflow: 'hidden',
           },
         ] as const
     }
   }, [position, statusBarHeight])
 
   return (
-    <Modal onHide={onHide} keyHide={keyHide} bgHide={bgHide} bgColor="rgba(50,50,50,.2)" ref={modalRef}>
+    <Modal onHide={onHide} keyHide={keyHide} bgHide={bgHide} bgColor="rgba(0,0,0,.38)" ref={modalRef}>
       <View style={{ ...styles.centeredView, ...centeredViewStyle, paddingBottom: keyboardShown ? keyboardHeight : 0 }}>
         <View style={{ ...styles.modalView, ...modalViewStyle, backgroundColor: theme['c-content-background'] }} onStartShouldSetResponder={() => true}>
           <View style={styles.header}>
-            <Text size={13} style={styles.title} numberOfLines={1}>{title}</Text>
+            <Text size={15} style={styles.title} numberOfLines={1}>{title}</Text>
             {closeBtnComponent}
           </View>
           {children}

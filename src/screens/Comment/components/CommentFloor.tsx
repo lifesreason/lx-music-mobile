@@ -35,7 +35,7 @@ const CommentFloor = memo(({ comment, isLast }: {
     if (!comment.reply?.length) return null
     const endIndex = comment.reply.length - 1
     return (
-      <View style={{ ...styles.replyFloor, borderTopColor: theme['c-list-header-border-bottom'] }}>
+      <View style={{ ...styles.replyFloor, backgroundColor: theme['c-primary-background'], borderTopColor: theme['c-border-background'] }}>
         {
           comment.reply.map((c, index) => (
             <CommentFloor comment={c} isLast={index === endIndex} key={`${comment.id}_${c.id}`} />
@@ -51,15 +51,15 @@ const CommentFloor = memo(({ comment, isLast }: {
     if (comment.likedCount == null) return null
     return (
       <View style={styles.like}>
-        <Icon name="thumbs-up" style={{ color: theme['c-450'] }} size={12} />
-        <Text style={styles.likedCount} size={12} color={ theme['c-450'] }>{comment.likedCount}</Text>
+        <Icon name="thumbs-up" style={{ color: theme['c-500'] }} size={12} />
+        <Text style={styles.likedCount} size={12} color={ theme['c-500'] }>{comment.likedCount}</Text>
       </View>
     )
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
-    <View style={{ ...styles.container, borderBottomColor: theme['c-list-header-border-bottom'], borderBottomWidth: isLast ? 0 : BorderWidths.normal, paddingBottom: isLast ? 0 : GAP }}>
+    <View style={{ ...styles.container, borderBottomColor: theme['c-border-background'], borderBottomWidth: isLast ? 0 : BorderWidths.normal, paddingBottom: isLast ? 0 : GAP }}>
       <View style={styles.comment}>
         <View>
           <Image
@@ -70,7 +70,7 @@ const CommentFloor = memo(({ comment, isLast }: {
         <View style={styles.right}>
           <View style={styles.info}>
             <View>
-              <Text selectable numberOfLines={1} size={14}>
+              <Text selectable numberOfLines={1} size={14} color={theme['c-font']}>
                 {comment.userName}
               </Text>
               <View style={styles.metaInfo}>
@@ -103,10 +103,9 @@ const styles = createStyle({
   container: {
     flex: 1,
     // backgroundColor: 'rgba(0,0,0,0.1)',
-    marginTop: GAP,
+    paddingTop: GAP,
     paddingBottom: GAP,
     borderBottomWidth: BorderWidths.normal,
-    borderStyle: 'dashed',
   },
   comment: {
     flex: 1,
@@ -145,10 +144,11 @@ const styles = createStyle({
   },
   replyFloor: {
     marginTop: GAP,
-    marginLeft: 20,
-    borderTopWidth: BorderWidths.normal,
+    marginLeft: 10,
+    borderRadius: 8,
+    padding: 10,
+    borderTopWidth: 0,
     // backgroundColor: 'rgba(0,0,0,0.1)',
-    borderStyle: 'dashed',
   },
 })
 
@@ -156,7 +156,7 @@ const stylesRaw = StyleSheet.create({
   avatar: {
     height: avatarWidth,
     width: avatarWidth,
-    borderRadius: 4,
+    borderRadius: avatarWidth / 2,
   },
 })
 

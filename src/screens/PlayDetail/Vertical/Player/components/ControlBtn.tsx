@@ -16,7 +16,7 @@ const PrevBtn = ({ size }: { size: number }) => {
   }
   return (
     <TouchableOpacity style={{ ...styles.cotrolBtn, width: size, height: size }} activeOpacity={0.5} onPress={handlePlayPrev}>
-      <Icon name='prevMusic' color={theme['c-button-font']} rawSize={size * 0.7} />
+      <Icon name='prevMusic' color={theme['c-font']} rawSize={size * 0.62} />
     </TouchableOpacity>
   )
 }
@@ -27,7 +27,7 @@ const NextBtn = ({ size }: { size: number }) => {
   }
   return (
     <TouchableOpacity style={{ ...styles.cotrolBtn, width: size, height: size }} activeOpacity={0.5} onPress={handlePlayNext}>
-      <Icon name='nextMusic' color={theme['c-button-font']} rawSize={size * 0.7} />
+      <Icon name='nextMusic' color={theme['c-font']} rawSize={size * 0.62} />
     </TouchableOpacity>
   )
 }
@@ -36,8 +36,8 @@ const TogglePlayBtn = ({ size }: { size: number }) => {
   const theme = useTheme()
   const isPlay = useIsPlay()
   return (
-    <TouchableOpacity style={{ ...styles.cotrolBtn, width: size, height: size }} activeOpacity={0.5} onPress={togglePlay}>
-      <Icon name={isPlay ? 'pause' : 'play'} color={theme['c-button-font']} rawSize={size * 0.7} />
+    <TouchableOpacity style={{ ...styles.playBtn, width: size, height: size, borderRadius: size / 2, backgroundColor: theme['c-primary'] }} activeOpacity={0.5} onPress={togglePlay}>
+      <Icon name={isPlay ? 'pause' : 'play'} color="#fff" rawSize={size * 0.48} />
     </TouchableOpacity>
   )
 }
@@ -84,5 +84,10 @@ const styles = createStyle({
     // backgroundColor: '#ccc',
     shadowOpacity: 1,
     textShadowRadius: 1,
+  },
+  playBtn: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 4,
   },
 })

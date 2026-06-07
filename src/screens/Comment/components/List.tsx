@@ -133,8 +133,8 @@ const styles = createStyle({
   list: {
     flexGrow: 1,
     flexShrink: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: 12,
+    paddingRight: 12,
   },
   footer: {
     textAlign: 'center',

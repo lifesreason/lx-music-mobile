@@ -14,6 +14,7 @@ import { scaleSizeH } from '@/utils/pixelRatio'
 import { HEADER_HEIGHT } from '@/config/constant'
 import { type InitState as CommonState } from '@/store/common/state'
 import SearchTypeSelector from '@/screens/Home/Views/Search/SearchTypeSelector'
+import { setNavActiveId } from '@/core/common'
 
 const headerComponents: Partial<Record<CommonState['navActiveId'], React.ReactNode>> = {
   nav_search: <SearchTypeSelector />,
@@ -35,19 +36,26 @@ const LeftHeader = () => {
   const openMenu = () => {
     global.app_event.changeMenuVisible(true)
   }
+  const openSearch = () => {
+    setNavActiveId('nav_search')
+  }
 
   return (
     <View style={{
       ...styles.container,
+      backgroundColor: theme['c-main-background'],
       height: scaleSizeH(HEADER_HEIGHT) + statusBarHeight,
       paddingTop: statusBarHeight,
     }}>
       <View style={styles.left}>
         <TouchableOpacity style={styles.btn} onPress={openMenu}>
-          <Icon color={theme['c-font']} name="menu" size={18} />
+          <Icon color={theme['c-font']} name="menu" size={20} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.titleBtn} onPress={openMenu}>
-          <Text style={styles.leftTitle} size={18}>{t(id)}</Text>
+        <TouchableOpacity style={{ ...styles.searchBtn, backgroundColor: theme['c-primary-input-background'] }} onPress={openSearch} activeOpacity={0.7}>
+          <Icon color={theme['c-500']} name="search-2" size={14} />
+          <Text style={styles.searchText} color={id == 'nav_search' ? theme['c-font'] : theme['c-font-label']} numberOfLines={1}>
+            {id == 'nav_search' ? t('nav_search') : `${t('nav_search')} · ${t(id)}`}
+          </Text>
         </TouchableOpacity>
       </View>
       {headerComponents[id] ?? null}
@@ -75,20 +83,27 @@ const RightHeader = () => {
   const openMenu = () => {
     global.app_event.changeMenuVisible(true)
   }
+  const openSearch = () => {
+    setNavActiveId('nav_search')
+  }
   return (
     <View style={{
       ...styles.container,
+      backgroundColor: theme['c-main-background'],
       height: scaleSizeH(HEADER_HEIGHT) + statusBarHeight,
       paddingTop: statusBarHeight,
     }}>
       <View style={styles.left}>
-        <TouchableOpacity style={styles.titleBtn} onPress={openMenu}>
-          <Text style={styles.rightTitle} size={18}>{t(id)}</Text>
+        <TouchableOpacity style={{ ...styles.searchBtn, backgroundColor: theme['c-primary-input-background'] }} onPress={openSearch} activeOpacity={0.7}>
+          <Icon color={theme['c-500']} name="search-2" size={14} />
+          <Text style={styles.searchText} color={id == 'nav_search' ? theme['c-font'] : theme['c-font-label']} numberOfLines={1}>
+            {id == 'nav_search' ? t('nav_search') : `${t('nav_search')} · ${t(id)}`}
+          </Text>
         </TouchableOpacity>
       </View>
       {headerComponents[id] ?? null}
       <TouchableOpacity style={styles.btn} onPress={openMenu}>
-        <Icon color={theme['c-font']} name="menu" size={18} />
+        <Icon color={theme['c-font']} name="menu" size={20} />
       </TouchableOpacity>
       {/* <TouchableOpacity style={styles.btn} onPress={openSetting}>
         <Icon style={{ ...styles.btnText, color: theme['c-font'] }} name="setting" size={styles.btnText.fontSize} />
@@ -117,7 +132,7 @@ const Header = () => {
 const styles = createStyle({
   container: {
     // width: '100%',
-    paddingRight: 5,
+    paddingRight: 8,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -127,7 +142,7 @@ const styles = createStyle({
   left: {
     flex: 1,
     flexDirection: 'row',
-    paddingLeft: 5,
+    paddingLeft: 8,
     alignItems: 'center',
     height: '100%',
   },
@@ -138,6 +153,18 @@ const styles = createStyle({
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
+  },
+  searchBtn: {
+    flex: 1,
+    height: 34,
+    borderRadius: 17,
+    paddingHorizontal: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  searchText: {
+    flex: 1,
+    paddingLeft: 8,
   },
   titleBtn: {
     flex: 1,

@@ -61,7 +61,7 @@ export default memo(({ item, index, showSource, onPress, onLongPress, onShowMenu
   return (
     <View style={{ ...styles.listItem, width: rowInfo.rowWidth, height: ITEM_HEIGHT, backgroundColor: isSelected ? theme['c-primary-background-hover'] : 'rgba(0,0,0,0)' }}>
       <TouchableOpacity style={styles.listItemLeft} onPress={() => { onPress(item, index) }} onLongPress={() => { onLongPress(item, index) }}>
-        <Text style={styles.sn} size={13} color={theme['c-300']}>{index + 1}</Text>
+        <Text style={styles.sn} size={13} color={theme['c-350']}>{index + 1}</Text>
         <View style={styles.itemInfo}>
           <Text numberOfLines={1}>{item.name}</Text>
           <View style={styles.listItemSingle}>
@@ -76,8 +76,8 @@ export default memo(({ item, index, showSource, onPress, onLongPress, onShowMenu
           ) : null
         }
       </TouchableOpacity>
-     <TouchableOpacity onPress={handleShowMenu} ref={moreButtonRef} style={styles.moreButton}>
-        <Icon name="dots-vertical" style={{ color: theme['c-350'] }} size={12} />
+     <TouchableOpacity onPress={handleShowMenu} ref={moreButtonRef} style={{ ...styles.moreButton, backgroundColor: theme['c-primary-background'] }}>
+        <Icon name="dots-vertical" style={{ color: theme['c-500'] }} size={12} />
       </TouchableOpacity>
     </View>
   )
@@ -96,8 +96,9 @@ const styles = createStyle({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     // paddingLeft: 10,
-    paddingRight: 2,
+    paddingRight: 10,
     alignItems: 'center',
+    borderRadius: 8,
     // borderBottomWidth: BorderWidths.normal,
   },
   listItemLeft: {
@@ -108,7 +109,7 @@ const styles = createStyle({
     alignItems: 'center',
   },
   sn: {
-    width: 38,
+    width: 44,
     // fontSize: 12,
     textAlign: 'center',
     // backgroundColor: 'rgba(0,0,0,0.2)',
@@ -159,13 +160,14 @@ const styles = createStyle({
     justifyContent: 'center',
   },
   moreButton: {
-    height: '80%',
-    paddingLeft: 16,
-    paddingRight: 16,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    marginLeft: 6,
     // paddingTop: 10,
     // paddingBottom: 10,
     // backgroundColor: 'rgba(0,0,0,0.2)',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 })
-

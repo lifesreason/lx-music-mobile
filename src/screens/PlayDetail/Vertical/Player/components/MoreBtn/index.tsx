@@ -25,6 +25,8 @@ const styles = createStyle({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
+    paddingTop: 4,
+    paddingBottom: 4,
     // backgroundColor: 'rgba(0,0,0,0.1)',
   },
 })
